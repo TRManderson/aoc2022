@@ -1,5 +1,6 @@
 (ns day3
-  (:require [clojure.set :refer [intersection]]))
+  (:require [shared :refer [aoc]]
+            [clojure.set :refer [intersection]]))
 
 
 (defn priority
@@ -20,13 +21,10 @@
 
 (defn parta
   [_]
-  (->> (java.io.BufferedReader. *in*)
-       line-seq
-       (map in-both)
-       (map priority)
-       (reduce + 0)
-       print)
-  )
+  (aoc 
+   (map in-both) 
+   (map priority) 
+   (reduce + 0)))
 
 (defn in-three
   [all]
@@ -34,10 +32,8 @@
 
 (defn partb
   [_]
-  (->> (java.io.BufferedReader. *in*)
-       line-seq
-       (partition 3)
-       (map in-three)
-       (map priority)
-       (reduce + 0)
-       print))
+  (aoc 
+   (partition 3) 
+   (map in-three) 
+   (map priority) 
+   (reduce + 0)))

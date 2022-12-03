@@ -1,5 +1,6 @@
 (ns day2
-  (:require [clojure.string :as string]))
+  (:require 
+   [shared :refer [aoc]]))
 
 (defn parse-line
   [line]
@@ -31,9 +32,7 @@
     ))
 
 (defn core [_]
-  (->> (java.io.BufferedReader. *in*)
-       (line-seq)
-       (map parse-line)
-       (map score)
-       (reduce + 0)
-       print))
+  (aoc 
+   (map parse-line) 
+   (map score) 
+   (reduce + 0)))

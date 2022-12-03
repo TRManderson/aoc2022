@@ -1,5 +1,5 @@
 (ns day1 
-  (:require [clojure.string :as string]))
+  (:require [shared :refer [aoc]]))
 
 (defn parse-int [^String n]
   (try
@@ -15,22 +15,18 @@
              (conj acc (take-while (comp not nil?) data))))))
 
 
-(defn core []
-  (->> (java.io.BufferedReader. *in*)
-       (line-seq)
-       (map parse-int)
-       splitter
-       (map (partial reduce + 0))
-       sort
-       reverse))
+(def go #(->> % 
+              (map parse-int)
+              splitter
+              (map (partial reduce + 0))
+              sort
+              reverse))
 
 (defn parta [_]
-  (->> (core)
-       first
-       print))
+  (aoc go first))
 
 (defn partb [_]
-  (->> (core)
-       (take 3)
-       (reduce + 0)
-       print))
+  (aoc
+   go
+   (take 3)
+   (reduce + 0)))
