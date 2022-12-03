@@ -31,9 +31,8 @@
     ))
 
 (defn core [_]
-  (->> *in*
-       slurp
-       string/split-lines
+  (->> (java.io.BufferedReader. *in*)
+       (line-seq)
        (map parse-line)
        (map score)
        (reduce + 0)

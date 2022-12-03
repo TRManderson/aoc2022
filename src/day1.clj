@@ -16,9 +16,8 @@
 
 
 (defn core []
-  (->> *in*
-       slurp
-       string/split-lines
+  (->> (java.io.BufferedReader. *in*)
+       (line-seq)
        (map parse-int)
        splitter
        (map (partial reduce + 0))
